@@ -5,7 +5,10 @@
 </p>
 <p align="center">
   <a href="https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
-  <a href="#"><img src="https://img.shields.io/badge/total%20models-257--models-blue.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/total%20models-298--models-blue.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/sentiments-75--models-success.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/chatbot-54--models-success.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/NMT-55--models-success.svg"></a>
 </p>
 
 ---
@@ -20,15 +23,19 @@
   * [Entity-Tagging](https://github.com/huseinzol05/NLP-Models-Tensorflow#entity-tagging)
   * [POS-Tagging](https://github.com/huseinzol05/NLP-Models-Tensorflow#pos-tagging)
   * [Dependency-Parser](https://github.com/huseinzol05/NLP-Models-Tensorflow#dependency-parser)
+  * [SQUAD Question-Answers](https://github.com/huseinzol05/NLP-Models-Tensorflow#squad-question-answers)
   * [Question-Answers](https://github.com/huseinzol05/NLP-Models-Tensorflow#question-answers)
   * [Abstractive Summarization](https://github.com/huseinzol05/NLP-Models-Tensorflow#abstractive-summarization)
   * [Extractive Summarization](https://github.com/huseinzol05/NLP-Models-Tensorflow#extractive-summarization)
   * [Stemming](https://github.com/huseinzol05/NLP-Models-Tensorflow#stemming)
   * [Generator](https://github.com/huseinzol05/NLP-Models-Tensorflow#generator)
+  * [Topic Generator](https://github.com/huseinzol05/NLP-Models-Tensorflow#topic-generator)
   * [Language detection](https://github.com/huseinzol05/NLP-Models-Tensorflow#language-detection)
   * [OCR (optical character recognition)](https://github.com/huseinzol05/NLP-Models-Tensorflow#ocr-optical-character-recognition)
+  * [Sentence-Pair classification](https://github.com/huseinzol05/NLP-Models-Tensorflow#sentence-pair)
   * [Speech to Text](https://github.com/huseinzol05/NLP-Models-Tensorflow#speech-to-text)
   * [Text to Speech](https://github.com/huseinzol05/NLP-Models-Tensorflow#text-to-speech)
+  * [Old-to-Young Vocoder](https://github.com/huseinzol05/NLP-Models-Tensorflow#old-to-young-vocoder)
   * [Text Similarity](https://github.com/huseinzol05/NLP-Models-Tensorflow#text-similarity)
   * [Text Augmentation](https://github.com/huseinzol05/NLP-Models-Tensorflow#text-augmentation)
   * [Miscellaneous](https://github.com/huseinzol05/NLP-Models-Tensorflow#Miscellaneous)
@@ -38,9 +45,17 @@
 
 Original implementations are quite complex and not really beginner friendly. So I tried to simplify most of it. Also, there are tons of not-yet release papers implementation. So feel free to use it for your own research!
 
+I will attached github repositories for models that I not implemented from scratch, basically I copy, paste and fix those code for deprecated issues.
+
+## Tensorflow version
+
+Tensorflow version 1.10 and above only, not included 2.X version.
+
 ## Contents
 
 ### [Text classification](text-classification)
+
+Trained on [English sentiment dataset](https://github.com/huseinzol05/NLP-Models-Tensorflow/tree/master/text-classification/data).
 
 1. Basic cell RNN
 2. Bidirectional RNN
@@ -51,13 +66,13 @@ Original implementations are quite complex and not really beginner friendly. So 
 7. LSTM RNN + Conv1D + Highway
 8. LSTM RNN with Attention
 9. Neural Turing Machine
-10. Seq2Seq
-11. Bidirectional Transformers
-12. Dynamic Memory Network
-13. Residual Network using Atrous CNN + Bahdanau Attention
-14. Transformer-XL
+10. Bidirectional Transformers
+11. Dynamic Memory Network
+12. Residual Network using Atrous CNN + Bahdanau Attention
+13. Transformer-XL
+14. XL-net
 
-<details><summary>Complete list (67 notebooks)</summary>
+<details><summary>Complete list (75 notebooks)</summary>
 
 1. Basic cell RNN
 2. Basic cell RNN + Hinge
@@ -123,13 +138,23 @@ Original implementations are quite complex and not really beginner friendly. So 
 62. Residual Network using Atrous CNN + Bahdanau Attention
 63. Deep pyramid CNN
 64. Transformer-XL
-65. GPT-2
+65. Transfer learning GPT-2 345M
 66. Quasi-RNN
 67. Tacotron
+68. Slice GRU
+69. Slice GRU + Bahdanau
+70. Wavenet
+71. Transfer learning BERT base
+72. Transfer learning XL-net Large
+73. LSTM BiRNN global Max and average pooling
+74. Transfer learning BERT base drop 6 layers
+75. Transfer learning BERT large drop 12 layers
 
 </details>
 
 ### [Chatbot](chatbot)
+
+Trained on [Cornell Movie Dialog corpus](https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/chatbot/dataset.tar.gz).
 
 1. Seq2Seq-manual
 2. Seq2Seq-API Greedy
@@ -145,7 +170,7 @@ Original implementations are quite complex and not really beginner friendly. So 
 12. GPT-2 + LSTM
 13. Tacotron + Beam decoder
 
-<details><summary>Complete list (53 notebooks)</summary>
+<details><summary>Complete list (54 notebooks)</summary>
 
 1. Basic cell Seq2Seq-manual
 2. LSTM Seq2Seq-manual
@@ -200,10 +225,13 @@ Original implementations are quite complex and not really beginner friendly. So 
 51. Conv-Encoder + LSTM
 52. Tacotron + Greedy decoder
 53. Tacotron + Beam decoder
+54. Google NMT
 
 </details>
 
-### [Neural Machine Translation (English to Vietnam)](neural-machine-translation)
+### [Neural Machine Translation](neural-machine-translation)
+
+Trained on [500 English-Vietnam](https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/neural-machine-translation/vietnam-train).
 
 1. Seq2Seq-manual
 2. Seq2Seq-API Greedy
@@ -215,8 +243,9 @@ Original implementations are quite complex and not really beginner friendly. So 
 8. Capsule layers + LSTM Seq2Seq-API + Luong Attention + Beam Decoder
 9. End-to-End Memory Network
 10. Attention is All you need
+11. BERT + Dilated Fairseq
 
-<details><summary>Complete list (49 notebooks)</summary>
+<details><summary>Complete list (55 notebooks)</summary>
 
 1. Basic cell Seq2Seq-manual
 2. LSTM Seq2Seq-manual
@@ -269,10 +298,16 @@ Original implementations are quite complex and not really beginner friendly. So 
 49. Conv-Encoder + LSTM
 50. Bytenet Greedy
 51. Residual GRU Bidirectional Seq2Seq-API Greedy
+52. Google NMT
+53. Dilated Seq2Seq
+54. BERT Encoder + LSTM Luong Decoder
+55. BERT Encoder + Dilated Fairseq
 
 </details>
 
 ### [Embedded](embedded)
+
+Trained on [English sentiment dataset](https://github.com/huseinzol05/NLP-Models-Tensorflow/tree/master/text-classification/data).
 
 1. Word Vector using CBOW sample softmax
 2. Word Vector using CBOW noise contrastive estimation
@@ -285,23 +320,37 @@ Original implementations are quite complex and not really beginner friendly. So 
 9. Batch-All Triplet-loss LSTM
 10. Fast-text
 11. ELMO (biLM)
+12. Triplet-loss + BERT
 
 ### [POS-Tagging](pos-tagging)
 
-1. Bidirectional RNN + Bahdanau Attention + CRF
-2. Bidirectional RNN + Luong Attention + CRF
-3. Bidirectional RNN + CRF
+Trained on [CONLL POS](https://cogcomp.org/page/resource_view/81).
+
+1. Bidirectional RNN + CRF, test accuracy 92%
+2. Bidirectional RNN + Luong Attention + CRF, test accuracy 91%
+3. Bidirectional RNN + Bahdanau Attention + CRF, test accuracy 91%
+4. Char Ngrams + Bidirectional RNN + Bahdanau Attention + CRF, test accuracy 91%
+5. Char Ngrams + Bidirectional RNN + Bahdanau Attention + CRF, test accuracy 91%
+6. Char Ngrams + Residual Network + Bahdanau Attention + CRF, test accuracy 3%
+7. Char Ngrams + Attention is you all Need + CRF, test accuracy 89%
+8. BERT, test accuracy 99%
 
 ### [Entity-Tagging](entity-tagging)
 
-1. Bidirectional RNN + Bahdanau Attention + CRF
-2. Bidirectional RNN + Luong Attention + CRF
-3. Bidirectional RNN + CRF
-4. Char Ngrams + Bidirectional RNN + Bahdanau Attention + CRF
-5. Char Ngrams + Residual Network + Bahdanau Attention + CRF
-6. Char Ngrams + Attention is you all Need + CRF
+Trained on [CONLL NER](https://cogcomp.org/page/resource_view/81).
+
+1. Bidirectional RNN + CRF, test accuracy 96%
+2. Bidirectional RNN + Luong Attention + CRF, test accuracy 93%
+3. Bidirectional RNN + Bahdanau Attention + CRF, test accuracy 95%
+4. Char Ngrams + Bidirectional RNN + Bahdanau Attention + CRF, test accuracy 96%
+5. Char Ngrams + Bidirectional RNN + Bahdanau Attention + CRF, test accuracy 96%
+6. Char Ngrams + Residual Network + Bahdanau Attention + CRF, test accuracy 69%
+7. Char Ngrams + Attention is you all Need + CRF, test accuracy 90%
+8. BERT, test accuracy 99%
 
 ### [Dependency-Parser](dependency-parser)
+
+Trained on [CONLL English Dependency](https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/dependency-parser/dev.conll.txt).
 
 1. Bidirectional RNN + Bahdanau Attention + CRF
 2. Bidirectional RNN + Luong Attention + CRF
@@ -309,7 +358,18 @@ Original implementations are quite complex and not really beginner friendly. So 
 4. Residual Network + Bahdanau Attention + Char Embedded + CRF
 5. Attention is all you need + CRF
 
+### [SQUAD Question-Answers](squad-qa)
+
+Trained on [SQUAD Dataset](https://rajpurkar.github.io/SQuAD-explorer/).
+
+1. BERT,
+```json
+{"exact_match": 77.57805108798486, "f1": 86.18327335287402}
+```
+
 ### [Question-Answers](question-answer)
+
+Trained on [bAbI Dataset](https://research.fb.com/downloads/babi/).
 
 1. End-to-End Memory Network + Basic cell
 2. End-to-End Memory Network + GRU cell
@@ -318,24 +378,37 @@ Original implementations are quite complex and not really beginner friendly. So 
 
 ### [Stemming](stemming)
 
+Trained on [English Lemmatization](https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/stemming/lemmatization-en.txt).
+
 1. LSTM + Seq2Seq + Beam
 2. GRU + Seq2Seq + Beam
 3. LSTM + BiRNN + Seq2Seq + Beam
 4. GRU + BiRNN + Seq2Seq + Beam
 5. DNC + Seq2Seq + Greedy
+6. BiRNN + Bahdanau + Copynet
 
 ### [Abstractive Summarization](abstractive-summarization)
 
-1. LSTM Seq2Seq using topic modelling
-2. LSTM Seq2Seq + Luong Attention using topic modelling
-3. LSTM Seq2Seq + Beam Decoder using topic modelling
-4. LSTM Bidirectional + Luong Attention + Beam Decoder using topic modelling
-5. LSTM Seq2Seq + Luong Attention + Pointer Generator
-6. Bytenet
-7. Pointer-Generator + Bahdanau
-8. Copynet
+Trained on [India news](https://github.com/huseinzol05/NLP-Models-Tensorflow/tree/master/abstractive-summarization/dataset).
+
+Accuracy based on 10 epochs only, calculated using word positions.
+
+1. LSTM Seq2Seq using topic modelling, test accuracy 13.22%
+2. LSTM Seq2Seq + Luong Attention using topic modelling, test accuracy 12.39%
+3. LSTM Seq2Seq + Beam Decoder using topic modelling, test accuracy 10.67%
+4. LSTM Bidirectional + Luong Attention + Beam Decoder using topic modelling, test accuracy 8.29%
+5. Pointer-Generator + Bahdanau, https://github.com/xueyouluo/my_seq2seq, test accuracy 15.51%
+6. Copynet, test accuracy 11.15%
+7. Pointer-Generator + Luong, https://github.com/xueyouluo/my_seq2seq, test accuracy 16.51%
+8. Dilated Seq2Seq, test accuracy 10.88%
+9. Dilated Seq2Seq + Self Attention, test accuracy 11.54%
+10. BERT + Dilated Fairseq, test accuracy 13.5%
+11. self-attention + Pointer-Generator, test accuracy 4.34%
+12. Dilated-Fairseq + Pointer-Generator, test accuracy 5.57%
 
 ### [Extractive Summarization](extractive-summarization)
+
+Trained on [random books](https://github.com/huseinzol05/NLP-Models-Tensorflow/tree/master/extractive-summarization/books).
 
 1. Skip-thought Vector
 2. Residual Network using Atrous CNN
@@ -345,9 +418,17 @@ Original implementations are quite complex and not really beginner friendly. So 
 
 1. CNN + LSTM RNN
 
+### [Sentence-pair](sentence-pair)
+
+Trained on [Cornell Movie--Dialogs Corpus](https://people.mpi-sws.org/~cristian/Cornell_Movie-Dialogs_Corpus.html)
+
+1. BERT
+
 ### [Speech to Text](speech-to-text)
 
-1. Tacotron
+Trained on [Toronto speech dataset](https://tspace.library.utoronto.ca/handle/1807/24487).
+
+1. Tacotron, https://github.com/Kyubyong/tacotron_asr
 2. Bidirectional RNN + Greedy CTC
 3. Bidirectional RNN + Beam CTC
 4. Seq2Seq + Bahdanau Attention + Beam CTC
@@ -358,16 +439,30 @@ Original implementations are quite complex and not really beginner friendly. So 
 9. CNN encoder + RNN decoder + Luong Attention
 10. Dilation CNN + GRU Bidirectional
 11. Deep speech 2
+12. Pyramid Dilated CNN
 
 ### [Text to Speech](text-to-speech)
 
-1. Tacotron
-2. Wavenet
-3. Seq2Seq + Luong Attention
-4. Seq2Seq + Bahdanau Attention
+Trained on [Toronto speech dataset](https://tspace.library.utoronto.ca/handle/1807/24487).
 
+1. Tacotron, https://github.com/Kyubyong/tacotron
+2. Fairseq + Dilated CNN vocoder
+3. Seq2Seq + Bahdanau Attention
+4. Seq2Seq + Luong Attention
+5. Dilated CNN + Monothonic Attention + Dilated CNN vocoder
+6. Dilated CNN + Self Attention + Dilated CNN vocoder
+7. Deep CNN + Monothonic Attention + Dilated CNN vocoder
+8. Deep CNN + Self Attention + Dilated CNN vocoder
+
+### [Old-to-Young Vocoder](vocoder)
+
+Trained on [Toronto speech dataset](https://tspace.library.utoronto.ca/handle/1807/24487).
+
+1. Dilated CNN
 
 ### [Generator](generator)
+
+Trained on [Shakespeare dataset](https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/generator/shakespeare.txt).
 
 1. Character-wise RNN + LSTM
 2. Character-wise RNN + Beam search
@@ -381,22 +476,44 @@ Original implementations are quite complex and not really beginner friendly. So 
 10. Word-wise + Seq2Seq + GRU + Beam
 11. Character-wise + Seq2Seq + GRU + Bahdanau Attention
 12. Word-wise + Seq2Seq + GRU + Bahdanau Attention
+13. Character-wise Dilated CNN + Beam search
+14. Transformer + Beam search
+15. Transformer XL + Beam search
+
+### [Topic Generator](topic-generator)
+
+Trained on [Malaysia news](https://github.com/huseinzol05/Malaya-Dataset/raw/master/news/news.zip).
+
+1. TAT-LSTM
+2. TAV-LSTM
+3. MTA-LSTM
+4. Dilated Fairseq
 
 ### [Language-detection](language-detection)
+
+Trained on [Tatoeba dataset](http://downloads.tatoeba.org/exports/sentences.tar.bz2).
 
 1. Fast-text Char N-Grams
 
 ### [Text Similarity](text-similarity)
 
-1. Character wise similarity + LSTM + Bidirectional
-2. Word wise similarity + LSTM + Bidirectional
-3. Character wise similarity Triplet loss + LSTM
-4. Word wise similarity Triplet loss + LSTM
+Trained on [First Quora Dataset Release: Question Pairs](https://data.quora.com/First-Quora-Dataset-Release-Question-Pairs).
+
+1. BiRNN + Contrastive loss, test accuracy 76.50%
+2. Dilated CNN + Contrastive loss, test accuracy 72.98%
+3. Transformer + Contrastive loss, test accuracy 73.48%
+4. Dilated CNN + Cross entropy, test accuracy 72.27%
+5. Transformer + Cross entropy, test accuracy 71.1%
+6. Transfer learning BERT base + Cross entropy, test accuracy 90%
 
 ### [Text Augmentation](text-augmentation)
 
 1. Pretrained Glove
-2. VAE-seq2seq-beam
+2. GRU VAE-seq2seq-beam TF-probability
+3. LSTM VAE-seq2seq-beam TF-probability
+4. GRU VAE-seq2seq-beam + Bahdanau Attention TF-probability
+5. VAE + Deterministic Bahdanau Attention, https://github.com/HareeshBahuleyan/tf-var-attention
+6. VAE + VAE Bahdanau Attention, https://github.com/HareeshBahuleyan/tf-var-attention
 
 ### [Attention](attention)
 
