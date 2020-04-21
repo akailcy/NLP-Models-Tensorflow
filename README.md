@@ -1,11 +1,11 @@
 <p align="center">
     <a href="#readme">
-        <img alt="logo" width="30%" src="tf-nlp.png">
+        <img alt="logo" width="40%" src="nlp-tf.png">
     </a>
 </p>
 <p align="center">
   <a href="https://github.com/huseinzol05/NLP-Models-Tensorflow/blob/master/LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
-  <a href="#"><img src="https://img.shields.io/badge/total%20notebooks-308--models-blue.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/total%20notebooks-319--models-blue.svg"></a>
 </p>
 
 ---
@@ -17,6 +17,7 @@
   * [Chatbot](#chatbot)
   * [Dependency Parser](#dependency-parser)
   * [Entity Tagging](#entity-tagging)
+  * [Extractive Summarization](#extractive-summarization)
   * [Generator](#generator)
   * [Language Detection](#language-detection)
   * [Neural Machine Translation](neural-machine-translation)
@@ -25,6 +26,7 @@
   * [Question-Answers](#question-answers)
   * [Sentence pairs](#sentence-pair)
   * [Speech-to-Text](#speech-to-text)
+  * [Spelling correction](#spelling-correction)
   * [SQUAD Question-Answers](#squad-question-answers)
   * [Stemming](#stemming)
   * [Text Augmentation](#text-augmentation)
@@ -47,7 +49,7 @@ I will attached github repositories for models that I not implemented from scrat
 
 ## Tensorflow version
 
-Tensorflow version 1.10 and above only, not included 2.X version.
+Tensorflow version 1.13 and above only, not included 2.X version. 1.13 < Tensorflow < 2.0 
 
 ```bash
 pip install -r requirements.txt
@@ -153,13 +155,20 @@ Trained on [Cornell Movie Dialog corpus](chatbot/dataset.tar.gz), accuracy table
 
 ### [Dependency-Parser](dependency-parser)
 
-Trained on [CONLL English Dependency](dependency-parser/dev.conll.txt).
+Trained on [CONLL English Dependency](https://github.com/UniversalDependencies/UD_English-EWT). Train set to train, dev and test sets to test.
 
-1. Bidirectional RNN + Bahdanau Attention + CRF
-2. Bidirectional RNN + Luong Attention + CRF
-3. Residual Network + Bahdanau Attention + CRF
-4. Residual Network + Bahdanau Attention + Char Embedded + CRF
-5. Attention is all you need + CRF
+Stackpointer and Biaffine-attention originally from https://github.com/XuezheMax/NeuroNLP2 written in Pytorch.
+
+Accuracy based on arc, types and root accuracies after 15 epochs only.
+
+1. Bidirectional RNN + CRF + Biaffine, arc accuracy 70.48%, types accuracy 65.18%, root accuracy 66.4%
+2. Bidirectional RNN + Bahdanau + CRF + Biaffine, arc accuracy 70.82%, types accuracy 65.33%, root accuracy 66.77%
+3. Bidirectional RNN + Luong + CRF + Biaffine, arc accuracy 71.22%, types accuracy 65.73%, root accuracy 67.23%
+4. BERT Base + CRF + Biaffine, arc accuracy 64.30%, types accuracy 62.89%, root accuracy 74.19%
+5. Bidirectional RNN + Biaffine Attention + Cross Entropy, arc accuracy 72.42%, types accuracy 63.53%, root accuracy 68.51%
+6. BERT Base + Biaffine Attention + Cross Entropy, arc accuracy 72.85%, types accuracy 67.11%, root accuracy 73.93%
+7. Bidirectional RNN + Stackpointer, arc accuracy 61.88%, types accuracy 48.20%, root accuracy 89.39%
+8. XLNET Base + Biaffine Attention + Cross Entropy, arc accuracy 74.41%, types accuracy 71.37%, root accuracy 73.17%
 
 ### [Entity-Tagging](entity-tagging)
 
@@ -173,6 +182,18 @@ Trained on [CONLL NER](https://cogcomp.org/page/resource_view/81).
 6. Char Ngrams + Residual Network + Bahdanau Attention + CRF, test accuracy 69%
 7. Char Ngrams + Attention is you all Need + CRF, test accuracy 90%
 8. BERT, test accuracy 99%
+9. XLNET-Base, test accuracy 99%
+
+### [Extractive Summarization](extractive-summarization)
+
+Trained on [CNN News dataset](https://cs.nyu.edu/~kcho/DMQA/).
+
+Accuracy based on ROUGE-2.
+
+1. LSTM RNN, test accuracy 16.13%
+2. Dilated-CNN, test accuracy 15.54%
+3. Multihead Attention, test accuracy 26.33%
+4. BERT-Base
 
 ### [Generator](generator)
 
@@ -316,6 +337,13 @@ Trained on [Toronto speech dataset](https://tspace.library.utoronto.ca/handle/18
 10. Deep Speech 2, test accuracy 81.40%
 11. Wav2Vec Transfer learning BiRNN LSTM, test accuracy 83.24%
 
+### [Spelling correction](spelling-correction)
+
+1. BERT-Base
+2. XLNET-Base
+3. BERT-Base Fast
+4. BERT-Base accurate
+
 ### [SQUAD Question-Answers](squad-qa)
 
 Trained on [SQUAD Dataset](https://rajpurkar.github.io/SQuAD-explorer/).
@@ -344,6 +372,8 @@ Trained on [English Lemmatization](stemming/lemmatization-en.txt).
 4. GRU VAE-seq2seq-beam + Bahdanau Attention TF-probability
 5. VAE + Deterministic Bahdanau Attention, https://github.com/HareeshBahuleyan/tf-var-attention
 6. VAE + VAE Bahdanau Attention, https://github.com/HareeshBahuleyan/tf-var-attention
+7. BERT-Base + Nucleus Sampling
+8. XLNET-Base + Nucleus Sampling
 
 ### [Text classification](text-classification)
 
@@ -360,9 +390,11 @@ Trained on [English sentiment dataset](text-classification/data), accuracy table
 9. Neural Turing Machine
 10. BERT
 11. Dynamic Memory Network
-12. XL-net
+12. XLNET
+13. ALBERT
+14. GPT-2
 
-<details><summary>Complete list (76 notebooks)</summary>
+<details><summary>Complete list (77 notebooks)</summary>
 
 1. Basic cell RNN
 2. Basic cell RNN + Hinge
@@ -440,6 +472,9 @@ Trained on [English sentiment dataset](text-classification/data), accuracy table
 74. Transfer learning BERT Base drop 6 layers
 75. Transfer learning BERT Large drop 12 layers
 76. Transfer learning XL-net Base
+77. Transfer learning ALBERT
+78. Transfer learning ELECTRA Base
+79. Transfer learning ELECTRA Large
 
 </details>
 
@@ -453,6 +488,7 @@ Trained on [First Quora Dataset Release: Question Pairs](https://data.quora.com/
 4. Dilated CNN + Cross entropy, test accuracy 72.27%
 5. Transformer + Cross entropy, test accuracy 71.1%
 6. Transfer learning BERT base + Cross entropy, test accuracy 90%
+7. Transfer learning XLNET base + Cross entropy, test accuracy 77.39%
 
 ### [Text to Speech](text-to-speech)
 
